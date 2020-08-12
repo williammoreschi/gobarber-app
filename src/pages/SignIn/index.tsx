@@ -7,7 +7,7 @@ import {
   ScrollView,
   Keyboard,
   TextInput,
-  Alert,
+  Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
@@ -33,6 +33,7 @@ import {
 } from './styles';
 
 const SignIn: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
@@ -54,14 +55,15 @@ const SignIn: React.FC = () => {
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
+      setLoading(true);
       try {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
           email: Yup.string()
-            .required('E-mail obrigatório')
+            .required('Campo E-mail é obrigatório')
             .email('Digite um e-mail válido'),
-          password: Yup.string().required('Senha obrigatório'),
+          password: Yup.string().required('Campo Senha é obrigatório'),
         });
 
         await schema.validate(data, {
@@ -71,7 +73,6 @@ const SignIn: React.FC = () => {
           email: data.email,
           password: data.password,
         });
-        // navigation.navigate('/dashboard');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -82,6 +83,8 @@ const SignIn: React.FC = () => {
             'Ocorreu um erro ao fazer login, cheque as credenciais',
           );
         }
+      }finally {
+        setLoading(false);
       }
     },
     [signIn],
@@ -129,6 +132,7 @@ const SignIn: React.FC = () => {
                 }}
               />
               <Button
+                loading={loading}
                 onPress={() => {
                   formRef.current?.submitForm();
                 }}

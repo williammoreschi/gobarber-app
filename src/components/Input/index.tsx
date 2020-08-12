@@ -6,10 +6,10 @@ import React, {
   forwardRef,
   useState,
 } from 'react';
-import { TextInputProps } from 'react-native';
+import { TextInputProps, Alert } from 'react-native';
 import { useField } from '@unform/core';
 
-import { Container, TextInput, Icon } from './styles';
+import { Container, TextInput, Icon, Error } from './styles';
 
 interface InputProps extends TextInputProps {
   name: string;
@@ -42,6 +42,10 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
     setIsFilled(!!inputValueRef.current.value);
+  }, []);
+
+  const handleError = useCallback((msg: string) => {
+    Alert.alert('Atenção', msg);
   }, []);
 
   useImperativeHandle(ref, () => ({
@@ -85,6 +89,14 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
           }}
           {...rest}
         />
+        {error && (
+          <Error
+            onPress={() => handleError(error)}
+            name="alert-octagon"
+            size={20}
+            color="#c53030"
+          />
+        )}
       </Container>
     </>
   );

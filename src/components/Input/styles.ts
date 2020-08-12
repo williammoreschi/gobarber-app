@@ -40,3 +40,7 @@ export const TextInput = styled.TextInput`
 export const Icon = styled(FeatherIcon)`
   margin-right: 16px;
 `;
+
+export const Error = styled(FeatherIcon)`
+  margin-left: 16px;
+`;
