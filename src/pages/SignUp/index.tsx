@@ -7,7 +7,7 @@ import {
   ScrollView,
   Keyboard,
   TextInput,
-  Alert
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
@@ -76,7 +76,6 @@ const SignUp: React.FC = () => {
         );
         navigation.navigate('SignIn');
       } catch (err) {
-
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
@@ -86,7 +85,7 @@ const SignUp: React.FC = () => {
             'Ocorreu um erro ao fazer cadastro, tente novamente',
           );
         }
-      }finally {
+      } finally {
         setLoading(false);
       }
     },

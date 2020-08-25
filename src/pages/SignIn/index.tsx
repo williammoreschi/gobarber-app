@@ -7,7 +7,7 @@ import {
   ScrollView,
   Keyboard,
   TextInput,
-  Alert
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
@@ -83,7 +83,7 @@ const SignIn: React.FC = () => {
             'Ocorreu um erro ao fazer login, cheque as credenciais',
           );
         }
-      }finally {
+      } finally {
         setLoading(false);
       }
     },
