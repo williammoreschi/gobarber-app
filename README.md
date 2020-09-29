@@ -3,7 +3,7 @@
 </h1>
 
 ### Veja a api clicando aqui [gobarber-api](https://github.com/williammoreschi/gobarber-api.git)
-### Veja a versão do app web clicando aqui [gobarber-mobile](https://github.com/williammoreschi/gobarber-web.git)
+### Veja a versão do app web clicando aqui [gobarber-web](https://github.com/williammoreschi/gobarber-web.git)
 
 # Executando o Projeto
 
